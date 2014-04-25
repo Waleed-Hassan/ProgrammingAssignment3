@@ -17,18 +17,15 @@ best <- function( state, outcome ) {
     outcomeData <- subset( outcomeData, State==state )
 
     ## get the death rate based on the outcome.  
-    if( outcome == "heart attack" ) {
-        outcomeData[,11] <- as.numeric(outcomeData[,11])
-        outcomeDataSort <- outcomeData[order(outcomeData[11],outcomeData[2]) , ]
-    }
-    if( outcome == "heart failure" ) {
-        outcomeData[,17] <- as.numeric(outcomeData[,17])
-        outcomeDataSort <- outcomeData[order(outcomeData[17],outcomeData[2]) , ]
-    }
-    if( outcome == "pneumonia" ) {
-        outcomeData[,23] <- as.numeric(outcomeData[,23])
-        outcomeDataSort <- outcomeData[order(outcomeData[23],outcomeData[2]) , ]
-    }
+    if( outcome == "heart attack" ) 
+        outcomeColumn <- 11
+    if( outcome == "heart failure" ) 
+        outcomeColumn <- 17
+    if( outcome == "pneumonia" ) 
+        outcomeColumn <- 23
+
+    outcomeData[,outcomeColumn] <- as.numeric(outcomeData[,outcomeColumn])
+    outcomeDataSort <- outcomeData[order(outcomeData[outcomeColumn],outcomeData[2]) , ]
     
     ## Return hospital name in that state with lowest 30-day death rate.  
     outcomeDataSort[1,2]
