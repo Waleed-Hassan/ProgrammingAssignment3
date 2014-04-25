@@ -5,7 +5,9 @@
 best <- function( state, outcome ) { 
     
     ## Read outcome data.  
-    outcomeData <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+    ## Added na.strings to change "Not Available" to NA, which prevents coercian
+    ## warnings in the as.numeric call below.  
+    outcomeData <- read.csv("outcome-of-care-measures.csv", colClasses = "character", na.strings = "Not Available")
     
     ## Check that state and outcome are valid.  
     if( !( state %in% state.abb ) )
