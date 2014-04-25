@@ -13,7 +13,7 @@ best <- function( state, outcome ) {
     if( !( outcome %in% c("heart attack","heart failure","pneumonia") ) )
         stop("invalid outcome")
 
-    ## filter on state
+    ## filter on state.  
     outcomeData <- subset( outcomeData, State==state )
 
     ## get the death rate based on the outcome.  
